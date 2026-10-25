@@ -15,9 +15,6 @@ from config import *
 app = Client("JishuBotz", api_id=API_ID, api_hash=API_HASH, session_string=STRING_SESSION)
 
 
-
-
-
 @Client.on_callback_query(filters.regex('cancel'))
 async def cancel(bot, update):
     try:
@@ -28,7 +25,6 @@ async def cancel(bot, update):
         await update.message.delete()
         await update.message.continue_propagation()
         return
-
 
 
 @Client.on_callback_query(filters.regex('rename'))
@@ -42,7 +38,6 @@ async def rename(bot, update):
     await update.message.reply_text(f"__Please Enter The New Filename...__\n\n**Note :** Extension Not Required", reply_to_message_id=id,
                                     reply_markup=ForceReply(True))
     dateupdate(chat_id, date)
-
 
 
 @Client.on_callback_query(filters.regex("doc"))
@@ -103,12 +98,11 @@ async def doc(bot, update):
             filename=new_filename, filesize=humanbytes(file.file_size))
     else:
         caption = f"**{new_filename}**"
+    
     if thumb:
         ph_path = await bot.download_media(thumb)
-        Image.open(ph_path).convert("RGB").save(ph_path)
-        img = Image.open(ph_path)
-        img.resize((320, 320))
-        img.save(ph_path, "JPEG")
+        img = Image.open(ph_path).convert("RGB")
+        img.save(ph_path, "JPEG", quality=100)
         c_time = time.time()
 
     else:
@@ -221,12 +215,11 @@ async def vid(bot, update):
             file.file_size), duration=timedelta(seconds=duration))
     else:
         caption = f"**{new_filename}**"
+    
     if thumb:
         ph_path = await bot.download_media(thumb)
-        Image.open(ph_path).convert("RGB").save(ph_path)
-        img = Image.open(ph_path)
-        img.resize((320, 320))
-        img.save(ph_path, "JPEG")
+        img = Image.open(ph_path).convert("RGB")
+        img.save(ph_path, "JPEG", quality=100)
         c_time = time.time()
 
     else:
@@ -340,10 +333,8 @@ async def aud(bot, update):
 
     if thumb:
         ph_path = await bot.download_media(thumb)
-        Image.open(ph_path).convert("RGB").save(ph_path)
-        img = Image.open(ph_path)
-        img.resize((320, 320))
-        img.save(ph_path, "JPEG")
+        img = Image.open(ph_path).convert("RGB")
+        img.save(ph_path, "JPEG", quality=100)
         await ms.edit("🚀 Try To Upload...  ⚡")
         c_time = time.time()
         try:
@@ -373,10 +364,6 @@ async def aud(bot, update):
             neg_used = used - int(file.file_size)
             used_limit(update.from_user.id, neg_used)
             os.remove(file_path)
-
-
-
-
 
 
 # Jishu Developer 
