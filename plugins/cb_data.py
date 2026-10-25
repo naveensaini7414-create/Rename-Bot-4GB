@@ -100,10 +100,9 @@ async def doc(bot, update):
         caption = f"**{new_filename}**"
     
     if thumb:
-        ph_path = await bot.download_media(thumb)
         img = Image.open(ph_path).convert("RGB")
-        img.save(ph_path, "JPEG", quality=100)
-        c_time = time.time()
+img.save(ph_path, "JPEG", quality=100)
+
 
     else:
         ph_path = None
@@ -217,10 +216,8 @@ async def vid(bot, update):
         caption = f"**{new_filename}**"
     
     if thumb:
-        ph_path = await bot.download_media(thumb)
         img = Image.open(ph_path).convert("RGB")
-        img.save(ph_path, "JPEG", quality=100)
-        c_time = time.time()
+img.save(ph_path, "JPEG", quality=100)
 
     else:
         try:
