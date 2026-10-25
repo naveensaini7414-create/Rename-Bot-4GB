@@ -102,8 +102,6 @@ async def doc(bot, update):
     if thumb:
         img = Image.open(ph_path).convert("RGB")
 img.save(ph_path, "JPEG", quality=100)
-
-
     else:
         ph_path = None
 
